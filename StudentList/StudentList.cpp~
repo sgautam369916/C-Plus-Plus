@@ -1,0 +1,18 @@
+// This program is for the Student List assignment, which is to help teach about structs and pointers!
+// Author: Shudhant Gautam
+// Date: 07 November 2021
+
+#include <iostream>
+
+using namespace std;
+
+struct Student {
+  char firstName[15];
+  char lastName[15];
+  int ID  ;
+  float GPA;
+};
+
+int main() {
+  
+}
