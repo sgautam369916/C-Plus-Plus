@@ -24,9 +24,20 @@ void DELETE(int year, vector<Media*>* media);
 int main() {
   bool running = true;
 
-  char userInput = [20];
+  char userCommand = [10];
   char titleIn = [50];
   int yearIn;
 
   vector<Media*> mediaList;
+
+  while (run) {
+    cout << "Welcome! Would you like to SEARCH, ADD, DELETE, or QUIT?" << endl;
+    cin.get(10);
+    cin.clear();
+    cin.ignore(10000, '\n');
+
+    if (strcmp(input, "title") == 0) {
+      cout << "Input title is: " << endl;
+    }
+  }
 }
