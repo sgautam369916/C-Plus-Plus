@@ -234,4 +234,50 @@ void ADD(vector<Media*>* media) {
     // Pushback
     media->push_back(music);
   }
+
+  // If the user enters an invalid input
+  else {
+    cout << "ERROR - Invalid media. Please enter either a movie, videogame, or song." << endl;
+  }
 }
+
+// Searching! This is where it gets hard. This is for char pointers
+void SEARCH(char* title, vector<Media*>* media) {
+  // Vectors :)
+  vector<Media*>::iterator it;
+
+  // Searching through media...
+  for (it = media->begin(); it != media->end(); ++it) {
+    // ...media titles
+    if (strcmp(title, (*it)->getTitle()) == 0) {
+      cout << (*it)->getTitle() << ", ";
+      cout << *(*it)->getYear() << endl;
+
+      // for movies...
+      if ((*it)->getType() == 0) {
+	// Inheritance and polymorphism!
+	cout << "Director: " << dynamic_cast<Movie*>(*it)->getDirector() << endl;
+	cout << "Duration: " << *dynamic_cast<Movie*>(*it)->getDuration() << " minutes" << endl;
+	cout << "Rating: " << *dynamic_cast<Movie*>(*it)->getRating() << "out of 5 stars" << endl;
+	cout << "=========================" << endl;
+      }
+
+      // for music...
+      else if ((*it)->getType() == 1) {
+	cout << "Artist: " << dynamic_cast<Music*>(*it)->getArtist() << endl;
+	cout << "Duration: " << *dynamic_cast<Music*>(*it)->getDUration() << " seconds" << endl;
+	cout << "Publisher: " dynamic_cast<Music*>(*it)->getPublisher(); << endl;
+	cout << "=========================" << endl;
+      }
+
+      // for videogames...
+      else if ((*it)->getType() == 2) {
+	cout << "Publisher: " << dynamic_cast<Videogame*>(*it)->getPublisher() << endl;
+	cout << "Rating: " << *dynamic_cast<Videogame*>(*it)->getRating() << " out of 5 stars" << endl;
+	cout << "=========================" << endl;
+      }
+    }
+  }
+}
+
+// Search function but for ints
