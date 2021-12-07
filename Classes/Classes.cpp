@@ -258,7 +258,7 @@ void SEARCH(char* title, vector<Media*>* media) {
 	// Inheritance and polymorphism!
 	cout << "Director: " << dynamic_cast<Movie*>(*it)->getDirector() << endl;
 	cout << "Duration: " << *dynamic_cast<Movie*>(*it)->getDuration() << " minutes" << endl;
-	cout << "Rating: " << *dynamic_cast<Movie*>(*it)->getRating() << "out of 5 stars" << endl;
+	cout << "Rating: " << *dynamic_cast<Movie*>(*it)->getRating() << " out of 5 stars" << endl;
 	cout << "=========================" << endl;
       }
 
@@ -281,3 +281,103 @@ void SEARCH(char* title, vector<Media*>* media) {
 }
 
 // Search function but for ints
+void SEARCH (int year, vector<Media*>* media) {
+  vector<Media*>::iterator it;
+  for (it = media->begin(); it != media->end(); ++it) {
+
+    // If year matches, retrieve info
+    if (year == *(*it)->getYear()) {
+      cout << (*it)->getTitle() << ", ";
+      cout << *(*it)->getYear() << endl;
+
+      // for movies...
+      if ((*it)->getType() ==0) {
+	cout << "Director: " << dynamic_cast<Movie*>(*it)->getDirector() << endl;
+	cout << "Duration: " << *dynamic_cast<Movie*>(*it)->getDuration() << " minutes" << endl;
+	cout << "Rating: " << *dynamic_cast<Movie*>(*it)->getRating() << " out of 5 stars" << endl;
+	cout << "=========================" << endl;
+      }
+
+      // for music...
+      else if ((*it)->getType() == 1) {
+	cout << "Artist: " << dynamic_cast<Music*>(*it)->getArtist() << endl;
+	cout << "Duration: " << *dynamic_cast<Music*>(*it)->getDuration() << " seconds" << endl;
+	cout << "Publisher: " << dynamic_cast<Music*>(*it)->getPublisher() << endl;
+	cout << "=========================" << endl;
+      }
+
+      // and last but not least for videogames...
+      else if ((*it)->getType() == 2) {
+	cout << "Publisher: " << dynamic_cast<Videogame*>(*it)->getPublisher() << endl;
+	cout << "Rating: " << *dynamic_cast<Videogame*>(*it)->getRating() << " out of 5 stars" << endl;
+	cout << "=========================" << endl;
+      }
+    }
+  }
+}
+
+// Finally on the delete function now, whew! That's a lot of cout statements. This one's for char*.
+void DELETE (char* title, vector<Media*>* media) {
+  // For confirmation of deletion, thought this might be a cool feature to add
+  char input[4];
+
+  vector<Media*>::iterator it;
+
+  for (it = media->begin(); it != media->end(); ++it) {
+    if (strcmp(title, (*it)->getTitle()) == 0) {
+      cout << (*it)->getTitle() << ", ";
+      cout << *(*it)->getYear() << endl;
+
+      // for movies...
+      if ((*it)->getType() == 0) {
+	cout << "Director: " << dynamic_cast<Movie*>(*it)->getDirector() << endl;
+	cout << "Diration: " << *dynamic_cast<Movie*>(*it)->getDuration() << endl;
+	cout << "Rating: " << *dynamic_cast<Movie*>(*it)->getRating() << endl;
+	cout << "=========================" << endl;
+      }
+
+      // for music
+      else if ((*it)->getType() == 1) {
+	cout << "Artist: " << dynamic_cast<Music*>(*it)->getArtist() << endl;
+	cout << "Duration: " << *dynamic_cast<Music*>(*it)->getDuration() << " seconds" << endl;
+	cout << "publisher: " << dynamic_cast<Music*>(*it)->getPublisher() << endl;
+	cout << "=========================" << endl;
+      }
+
+      // for videogames
+      else if ((*it)->getType() == 2) {
+	cout << "Publisher: " << dynamic_cast<Videogame*>(*it)->getPublisher() << endl;
+	cout << "Rating: " << *dynamic_cast<Videogame*>(*it)->getRating() << " out of 5 stars" << endl;
+	cout << "=========================" << endl;
+      }
+
+      // Time to delete!
+      cout << "Would you like to delete? Enter yes or no." << endl;
+      cin.get(input, 4);
+      cin.clear();
+      cin.ignore(10000, '\n');
+
+      if (strcmp(input, "yes") == 0) {
+	  delete *it;
+	  it = media->erase(it);
+	  return;
+      }
+    }
+  }
+}
+
+// typing out all of this and then using my arrow keys to navigate what to change because all these functions are so similar is a huge pain in the neck. but here we are--the last function to be defined! deletion for ints.
+void DELETE (int year, vector<Media*>* media) {
+  // Once again for yes/no functionality
+  char input[4];
+
+  vector<Media*>::iterator it;
+  for (it = media->begin(); it != media->end(); ++it) {
+    if (year == *(*it)->getYear()) {
+      cout << (*it)->getTitle() << ", ";
+      cout << *(*it)->getYear() << endl;
+
+      // for movies...
+    }
+  }
+}
