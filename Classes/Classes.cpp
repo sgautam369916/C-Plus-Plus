@@ -378,6 +378,39 @@ void DELETE (int year, vector<Media*>* media) {
       cout << *(*it)->getYear() << endl;
 
       // for movies...
+      if ((*it)->getType() == 0) {
+	cout << "Director: " << dynamic_cast<Movie*>(*it)->getDirector() << endl;
+	cout << "Duration: " << *dynamic_cast<Movie*>(*it)->getDuration() << " minutes" << endl;
+	cout << "Rating: " << *dynamic_cast<Movie*>(*it)->getRating() << " out of 5 stars" << endl;
+	cout << "=========================" << endl;
+      }
+
+      // for music...
+      else if ((*it)->getType() == 1) {
+	cout << "Artist: " << dynamic_cast<Music*>(*it)->getArtist() << endl;
+	cout << "Duration: " << *dynamic_cast<Music*>(*it)->getDuration() << " seconds" << endl;
+	cout << "Publisher: " << dynamic_cast<Music*>(*it)->getPublisher() << endl;
+	cout << "=========================" << endl;
+      }
+
+      // for videogames
+      else if ((*it)->getType() == 2) {
+	cout << "Publisher: " << dynamic_cast<Videogame*>(*it)->getPublisher() << endl;
+	cout << "Rating: " << *dynamic_cast<Videogame*>(*it)->getRating() << " out of 5 stars" << endl;
+	cout << "=========================" << endl;
+      }
+
+      // deletion, same as previous delete function
+       cout << "Would you like to delete? Enter yes or no." << endl;
+      cin.get(input, 4);
+      cin.clear();
+      cin.ignore(10000, '\n');
+
+      if (strcmp(input, "yes") == 0) {
+          delete *it;
+          it = media->erase(it);
+          return;
+      }
     }
   }
 }

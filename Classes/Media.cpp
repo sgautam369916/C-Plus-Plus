@@ -9,19 +9,18 @@
 using namespace std;
 
 Media::Media() {
-  title = new char[100];
-  year = new int;
-  type = new int;
+  // Nothing goes here
 }
 
-char* Media:getTitle() {
+// Retrieval methods
+char* Media::getTitle() {
   return title;
 }
 
-int* Media:getYear() {
+int* Media::getYear() {
   return year;
 }
 
-int* Media:getType() {
+int Media::getType() {
   return 0;
 }
