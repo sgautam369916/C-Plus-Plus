@@ -14,7 +14,7 @@
 
 using namespace std;
 
-// Defining functions
+// Defining the main functions
 void ADD(vector<Media*>* media);
 void DELETE(char* title, vector<Media*>* media);
 void SEARCH(char* title, vector<Media*>* media);
@@ -24,37 +24,37 @@ void DELETE(int year, vector<Media*>* media);
 int main() {
   bool running = true;
 
-  char userCommand = [10];
-  char titleIn = [50];
-  int yearIn;
+  char userCommand[10];
+  char title[50];
+  int year;
 
   vector<Media*> mediaList;
 
-  while (run) {
+  while (running) {
     cout << "Welcome! Would you like to SEARCH, ADD, DELETE, or QUIT?" << endl;
-    cin.get(10);
+    cin.get(userCommand, 10);
 
     // Clearing/ignoring buffers was a contribution of a prior C++ student, Mahmoud Abdelmoneum
     cin.clear();
     cin.ignore(10000, '\n');
 
     // If user command is "add" (or "ADD", we gotta keep track of capitalizations lol), we add!
-    if (strcmp(input, "add") == 0 || strcmp(input, "ADD") == 0) {
+    if (strcmp(userCommand, "add") == 0 || strcmp(userCommand, "ADD") == 0) {
       ADD(&mediaList);
     }
 
     // If user command is "search", we search!
-    else if (strcmp(input, "search") == 0 || strcmp(input, "SEARCH") == 0) {
+    else if (strcmp(userCommand, "search") == 0 || strcmp(userCommand, "SEARCH") == 0) {
       // Ask user to specify search method
       cout << "Do you want to search by title, or search by year?" << endl;
 
       // Shoutout to Momo once again
-      cin.get(input, 6);
+      cin.get(userCommand, 6);
       cin.clear();
       cin.ignore(10000, '\n');
 
       // If user specified "search by title"
-      if (strcmp(input, "title") == 0) {
+      if (strcmp(userCommand, "title") == 0) {
 	cout << "Enter title: " << endl;
 
 	cin.get(title, 40);
@@ -66,7 +66,7 @@ int main() {
       }
 
       // If user specified "search by year"
-      else if (strcmp(input, "year") == 0) {
+      else if (strcmp(userCommand, "year") == 0) {
 	cout << "Input year: " << endl;
 	cin >> year;
 
@@ -79,15 +79,15 @@ int main() {
     }
 
     // If user command is "delete", we delete!
-    else if (strcmp(input, "delete") == 0 || strcmp(input, "DELETE") == 0) {
+    else if (strcmp(userCommand, "delete") == 0 || strcmp(userCommand, "DELETE") == 0) {
       cout << "Do you want to delete by title, or delete by year?" << endl;
       // Don't need to get any more than 6 chars since "title" = 6 chars long (don't forget that last one lol this took me the longest time to debug)
-      cin.get(input, 6);
+      cin.get(userCommand, 6);
       cin.clear();
       cin.ignore(10000, '\n');
 
       // If user specified delete by title
-      if (strcmp(input, "title") == 0) {
+      if (strcmp(userCommand, "title") == 0) {
 	cout << "Input title: " << endl;
 	cin.get(title, 30);
 	cin.clear();
@@ -97,7 +97,7 @@ int main() {
 	DELETE(title, &mediaList);
       }
       // if user specified dlete by year
-      else if (strcmp(input, "year") == 0) {
+      else if (strcmp(userCommand, "year") == 0) {
 	cout << "Input year: " << endl;
 	cin >> year;
 	cin.clear();
@@ -109,9 +109,9 @@ int main() {
     }
 
     // If user wants to quit (or "QUIT)
-    else if (strcmp(input, "quit") == 0 || strcmp(input, "QUIT") == 0) {
+    else if (strcmp(userCommand, "quit") == 0 || strcmp(userCommand, "QUIT") == 0) {
       // Not too hard, right?
-      run = false;
+      running = false;
     }
 
     // Just covering all my bases here
@@ -265,8 +265,8 @@ void SEARCH(char* title, vector<Media*>* media) {
       // for music...
       else if ((*it)->getType() == 1) {
 	cout << "Artist: " << dynamic_cast<Music*>(*it)->getArtist() << endl;
-	cout << "Duration: " << *dynamic_cast<Music*>(*it)->getDUration() << " seconds" << endl;
-	cout << "Publisher: " dynamic_cast<Music*>(*it)->getPublisher(); << endl;
+	cout << "Duration: " << *dynamic_cast<Music*>(*it)->getDuration() << " seconds" << endl;
+	cout << "Publisher: " << dynamic_cast<Music*>(*it)->getPublisher() << endl;
 	cout << "=========================" << endl;
       }
 

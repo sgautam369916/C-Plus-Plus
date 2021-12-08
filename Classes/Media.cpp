@@ -18,7 +18,7 @@ char* Media::getTitle() {
 }
 
 int* Media::getYear() {
-  return year;
+  return &year;
 }
 
 int Media::getType() {
