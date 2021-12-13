@@ -1,9 +1,8 @@
-// Header file for Videogames daughter class in Classes project
 // Author: Shudhant Gautam
 // Date: 05 December 2021
 
-#ifndef VIDEOGAME_H
-#define VIDEOGAME_H
+#ifndef MUSIC_H
+#define MUSIC_H
 
 #include <iostream>
 #include <cstring>
@@ -11,14 +10,16 @@
 
 using namespace std;
 
-class Videogame : public Media {
+class Music : public Media {
  public:
-  Videogame();
+  Music();
   virtual int getType();
   char* getPublisher();
-  float* getRating();
+  char* getArtist();
+  int* getDuration();
  private:
+  char artist[30];
   char publisher[30];
-  float rating;
+  int duration;
 };
 #endif

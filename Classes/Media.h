@@ -2,19 +2,23 @@
 // Author: Shudhant Gautam
 // Date: 05 December 2021
 
+#ifndef MEDIA_H
+#define MEDIA_H
+
 #include <iostream>
 #include <cstring>
 
-using namespace std:
+using namespace std;
 
 class Media {
  public:
   Media();
   char* getTitle();
   int* getYear();
-  char* getType();
+  virtual int getType();
   
  private:
-  char title[];
-  int type;
+  char title[30];
+  int year;
 };
+#endif
