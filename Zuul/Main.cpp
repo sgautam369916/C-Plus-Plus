@@ -50,6 +50,38 @@ int main() {
   
   // Only execute while program is in running state
   while (running) {
-    
+    cout << "You are in the " << endl;
+    printRoom(&roomList, *itemList, curRoom);
+    cin >> userInput;
+    cin.clear();
+    cin.ignore(10000, '\n');
+
+    // God I love strcmp
+    if (strcmp(userInput, "quit") == 0) {
+      running = false;
+    }
+
+    else if (strcmp(input, "go") == 0) {
+      cout << "Where would you like to go?" << endl;
+      cin >> userInput;
+      cin.clear();
+      cin.ignore(10000, '\n');
+
+      if (move(&roomList, curRoom, userInput) == 0) {
+	cout << "Uh oh. There's nothing there. Try a different direction." << endl;
+      }
+
+      else {
+	curRoom = move(&roomList, curRoom, userInput);
+      }
+    }
+
+    else if (strcmp(input, "inv") == 0) {
+
+      // As long as the inventory is not empty
+      if (inventory.size() != 0) {
+
+      }
+    }
   }
 }
