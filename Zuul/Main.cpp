@@ -194,6 +194,7 @@ void createRoom(vector<Room*>* rooms) {
   rotunda -> setId(1);
 
   // Possible exits from the rotunda
+  // Setting int "2" to exit "east", so on and so forth
   exitMap.insert(pair<int, char*> (2, east));
   exitMap.insert(pair<int, char*> (3, north));
   exitMap.insert(pair<int, char*> (4, south));
@@ -206,8 +207,15 @@ void createRoom(vector<Room*>* rooms) {
   // Wipe map clean to be reused for next room's exit mapping
   exitMap.clear();
 
+  // Labor and Delivery Ward
   Room* LND = new Room();
   LND -> setDescription((char*)("in the Labor and Delivery Room. Uh... what are you doing here?"));
   LND -> set Id(4);
   exitMap.insert(pair<int, char*> (1, north));
+  LND -> setExits(exitMap);
+  LND ->setItem(0);
+  rooms -> push_back(LND);
+  temp.clear();
+
+  R
 }
