@@ -61,7 +61,7 @@ int main() {
       running = false;
     }
 
-    else if (strcmp(input, "go") == 0) {
+    else if (strcmp(userInput, "go") == 0) {
       cout << "Where would you like to go?" << endl;
       cin >> userInput;
       cin.clear();
@@ -76,12 +76,138 @@ int main() {
       }
     }
 
-    else if (strcmp(input, "inv") == 0) {
+    else if (strcmp(userInput, "inv") == 0) {
 
       // As long as the inventory is not empty
       if (inventory.size() != 0) {
+	cout << "Here's your inventory: " << endl;
+	printInventory(&itemList, inventory);
+      }
+      
+      // Otherwise, if it's empty...
+      else {
+	cout << "You do not have anything in your inventory. Pick up items in rooms to fill it up!" << endl;
+      }
+    }
 
+    // Pick up item
+    else if (strcmp(userInput, "get") == 0) {
+      cout << "Name the item you'd like to pick up (spelling counts!): " << endl;
+
+      cin >> userInput;
+      cin.clear();
+      cin.ignore(10000, '\n');
+
+      // Calling getItem function
+      getItem(&roomList, &itemList, &iunventory, curRoom, userInput);
+    }
+
+    // Dropping an item
+    else if (strcmp(userInput, "drop") == 0) {
+      cout << "Name the item you'd like to drop (spelling counts!): " << endl;
+
+      cin >> userInput;
+      cin.clear();
+      cin.ignore(10000, '\n');
+
+      // Calling dropItem function
+      dropItem(&roomList, *itemList, &inventory, curRoom, input);
+    }
+
+    else if (strcmp(input, "help") == 0) {
+      cout << "The goal of the game is to go through the rooms and find a certain item that will help you win the game. Start by exploring!" << endl;
+      cout << "Wondering how to play? You have 4 commands: move, get, drop, and inv." << endl;
+      cout << "Good luck!" << endl;
+    }
+
+    // If invalid input
+    else {
+      cout << "Uh oh. Invalid input. Please try again." << endl;
+    }
+
+    // Winning
+    for (int i = 0; i < inventory.size(); i++) {
+      for (int j = 0; j < inventory.size(); j++) {
+	for (int k = 0; k < inventory.size(); k++) {
+
+	  // I got help for this part from Faizan K and Mahmoud A
+	  if (curRoom == 1 && inventory[i] == 1 && inventory[j] == 2 && inventory[k] == 3) {
+	    // You won!
+	    cout << "HOORAY! You've survived the coronavirus and have won the game. Give yourself a pat on the back!" << endl;
+	    return 0;
+	  }
+	}
+      }
+    }
+
+    // Losing
+    for (int i = 0; i < inventory.size(); i++) {
+
+      // I got inspiration from Faizan for this part of my Zuul game
+      if (inventory[i] == 4 || inventory[i] == 5) {
+	cout << "lol you just lost" << endl;
+	return 0;
       }
     }
   }
+  return 0;
+}
+
+// Defining move function
+int move(vector<Room*>* rooms, int curRoom, char direction[]) {
+  // Now I can see why Classes comes before this project
+  vector<Room*>::iterator it;
+
+  for (it = rooms->begin(); it != rooms->end(); it++) {
+    if (curRoom == (*it)->getId()) {
+      map<int, char*> exits;
+      exits = *(*i) -> getExits();
+
+      // Exits
+      map<int, char*>::const_iterator cit;
+
+      for (cit = exits.begin(); cit != exits.end(); cit++) {
+	if (strcmp(cit -> second, direction) == 0) {
+	  // Return player's desired move
+	  return cit -> first;
+	}
+      }
+    }
+  }
+  return 0;
+}
+
+// Room creation function
+void createRoom(vector<Room*>* rooms) {
+  // Exits
+  char* north = (char*)("north");
+  char* east = (char*)("east");
+  char* south = (char*)("south");
+  char* west = (char*)("west");
+
+  // Create exit map for exit mapping
+  map<int, char*> exitMap;
+
+  // Rooms
+  Room* rotunda = new Room();
+  rotunda -> setDescrioption((char*)("at the front entrance of the hospital."));
+  rotunda -> setId(1);
+
+  // Possible exits from the rotunda
+  exitMap.insert(pair<int, char*> (2, east));
+  exitMap.insert(pair<int, char*> (3, north));
+  exitMap.insert(pair<int, char*> (4, south));
+  rotunda -> setExits(exitMap);
+  rotunda ->setItem(0);
+
+  // Vector stuff
+  rooms -> push_back(rotunda);
+
+  // Wipe map clean to be reused for next room's exit mapping
+  exitMap.clear();
+
+  Room* LND = new Room();
+  LND -> setDescription((char*)("in the Labor and Delivery Room. Uh... what are you doing here?"));
+  LND -> set Id(4);
+  exitMap.insert(pair<int, char*> (1, north));
 }
