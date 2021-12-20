@@ -334,7 +334,7 @@ void createRoom(vector<Room*>* rooms) {
   Room * A51 = new Room();
   A51 -> setDescription((char*)("in Area 51. You're in the wrong place, buddy."));
   A51 -> setId(14);
-  exitMap.insert(pairr<int, char*> (10, south));
+  exitMap.insert(pair<int, char*> (10, south));
   A51 -> setExits(exitMap);
   A51 -> setItem(0);
   rooms -> push_back(A51);
@@ -377,7 +377,7 @@ void createItem(vector<Item*>* items) {
 
   // Bazooka
   Item* bazooka = new Item();
-  bazooka -> setname((char*)("rocket launcher"));
+  bazooka -> setName((char*)("rocket launcher"));
   bazooka -> setId(4);
   items -> push_back(bazooka);
 
@@ -426,7 +426,7 @@ void printRoom(vector<Room*>* rooms, vector<Item*>* items, int curRoom) {
       cout << "Items in the room: ";
       // Will be used if there's no items in the room
       int count = 0;
-      for (i = items->begin(); i != items->end(); i++) {
+      for (iIt = items->begin(); iIt != items->end(); iIt++) {
 	if ((*rIt)->getItem() == (*iIt)->getId()) {
 	  // Print name of item
 	  cout << (*iIt)->getName();
@@ -447,11 +447,11 @@ void printRoom(vector<Room*>* rooms, vector<Item*>* items, int curRoom) {
 // getInventory function
 void getInventory(vector<Item*>* items, vector<int> inventory) {
   vector<Item*>::iterator it;
-  for (it = items0>begin(); it != items->end(); it++) {
+  for (it = items->begin(); it != items->end(); it++) {
     // NOT an iterator, just an int
     for (int i = 0; i < inventory.size(); i++) {
-      if (inventory[i] == (*i) -> getId()) {
-	cout << (*i) -> getName() << " ";
+      if (inventory[i] == (*it) -> getId()) {
+	cout << (*it) -> getName() << " ";
       }
     }
   }
@@ -461,7 +461,7 @@ void getInventory(vector<Item*>* items, vector<int> inventory) {
 // getItem function
 void getItem(vector<Room*>* rooms, vector<Item*>* items, vector<int>* inventory, int curRoom, char name[]) {
   vector<Room*>::iterator rIt;
-  vector<item*>::iterator iIt;
+  vector<Item*>::iterator iIt;
   for (rIt = rooms->begin(); rIt != rooms->end(); rIt++) {
     if (curRoom == (*rIt)->getId()) {
       for (iIt = items->begin(); iIt != items->end(); iIt++) {
@@ -497,7 +497,7 @@ void dropItem(vector<Room*>* rooms, vector<Item*>* items, vector<int>* inventory
 	  // If the desired item to be dropped is valid/exists...
 	  if (strcmp((*iIt)->getName(), name) == 0) {
 	    // Need to go through player's inventory to find the item to drop (and if it exists)
-	    for (nIt = inventory->begin(); nIt != inventory0>end(); nIt++) {
+	    for (nIt = inventory->begin(); nIt != inventory->end(); nIt++) {
 	      // As long as the inputted item is in the player's inventory...
 	      if ((*nIt) == (*iIt)->getId()) {
 		cout << "You dropped: " << (*iIt)->getName() << endl;

@@ -9,7 +9,7 @@
 using namespace std;
 
 // Blank on purpose
-Item::item() {
+Item::Item() {
 }
 
 // getName function
