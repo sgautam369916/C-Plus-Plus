@@ -45,7 +45,7 @@ int main() {
   // Initial game messages
   cout << "Welcome! Huh? Oh what's that! The coronavirus is coming!" << endl;
   cout << "Quick! Get into the hospital and find things for your survival." << endl;
-  cout << "Wondering how to play? You have 4 commands: move, get, drop, and inv." << endl;
+  cout << "Wondering how to play? You have 4 commands: go, get, drop, and inv." << endl;
   cout << "Good luck." << endl;
   
   // Only execute while program is in running state
