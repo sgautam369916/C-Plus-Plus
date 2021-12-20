@@ -50,7 +50,7 @@ int main() {
   
   // Only execute while program is in running state
   while (running) {
-    cout << "You are in the " << endl;
+    cout << "You are ";
     printRoom(&roomList, &itemList, curRoom);
     cin >> userInput;
     cin.clear();
@@ -116,7 +116,7 @@ int main() {
 
     else if (strcmp(userInput, "help") == 0) {
       cout << "The goal of the game is to go through the rooms and find a certain item that will help you win the game. Start by exploring!" << endl;
-      cout << "Wondering how to play? You have 4 commands: move, get, drop, and inv." << endl;
+      cout << "Wondering how to play? You have 4 commands: go, get, drop, and inv." << endl;
       cout << "Good luck!" << endl;
     }
 
@@ -377,31 +377,31 @@ void createItem(vector<Item*>* items) {
 
   // Bazooka
   Item* bazooka = new Item();
-  bazooka -> setName((char*)("rocket launcher"));
+  bazooka -> setName((char*)("bazooka"));
   bazooka -> setId(4);
   items -> push_back(bazooka);
 
   // Hand Sanitizer (necessary to win)
   Item* purell = new Item();
-  purell -> setName((char*)("hand sanitizer that actually kills 100% of germs for once"));
+  purell -> setName((char*)("Purell"));
   purell -> setId(5);
   items -> push_back(purell);
 
   // Emergency Kit (necessary to win)
   Item* eKit = new Item();
-  eKit -> setName((char*)("emergency kit"));
+  eKit -> setName((char*)("emergencykit"));
   eKit -> setId(1);
   items -> push_back(eKit);
 
   // Lysol (necessary to win)
   Item* lysol = new Item();
-  lysol -> setName((char*)("Lysol wipes"));
+  lysol -> setName((char*)("Lysol"));
   lysol -> setId(2);
   items -> push_back(lysol);
 
   // Morphine shot
   Item* drugs = new Item();
-  drugs -> setName((char*)("morphine shot"));
+  drugs -> setName((char*)("morphine"));
   drugs -> setId(3);
   items -> push_back(drugs);
 }
