@@ -463,6 +463,64 @@ void getItem(vector<Room*>* rooms, vector<Item*>* items, vector<int>* inventory,
   vector<Room*>::iterator rIt;
   vector<item*>::iterator iIt;
   for (rIt = rooms->begin(); rIt != rooms->end(); rIt++) {
+    if (curRoom == (*rIt)->getId()) {
+      for (iIt = items->begin(); iIt != items->end(); iIt++) {
+	// If the desired item to be picked up is in the room...
+	if (((*rIt)->getItem() == (*iIt)->getId()) && (strcmp((*iIt)->getName(), name) == 0)) {
+	  // ... then add it to the player's inventory
+	  inventory->push_back((*iIt)->getId());
+	  // and remove the item from the room (almost forgot to do this by the way)
+	  (*rIt)->setItem(0);
+	  cout << "You picked up: " << (*iIt)->getName() << endl;
+	  return;
+	}
+      }
+    }
+  }
+  // Error message if if statement condition is not met
+  cout << "Uh oh! Invalid item name entered. Please try again." << endl;
+}
 
+// dropItem function
+void dropItem(vector<Room*>* rooms, vector<Item*>* items, vector<int>* inventory, int curRoom, char name[]) {
+  int invCount;
+  vector<Room*>::iterator rIt;
+  vector<Item*>::iterator iIt;
+  vector<int>::iterator nIt;
+
+  for (rIt = rooms->begin(); rIt != rooms->end(); rIt++) {
+    // If the item to be dropped is in curRoom
+    if (curRoom == (*rIt)->getId()) {
+      // If there are no items in the room...
+      if ((*rIt)->getItem() == 0) {
+	for (iIt = items->begin(); iIt != items->end(); iIt++) {
+	  // If the desired item to be dropped is valid/exists...
+	  if (strcmp((*iIt)->getName(), name) == 0) {
+	    // Need to go through player's inventory to find the item to drop (and if it exists)
+	    for (nIt = inventory->begin(); nIt != inventory0>end(); nIt++) {
+	      // As long as the inputted item is in the player's inventory...
+	      if ((*nIt) == (*iIt)->getId()) {
+		cout << "You dropped: " << (*iIt)->getName() << endl;
+
+		// And then put the item back into the room
+		(*rIt)->setItem((*iIt)->getId());
+		// And last step is to remove the item from the player's inventory
+		nIt = inventory->erase(nIt);
+		return;
+	      }
+	    }
+	  }
+	  // It took me a fat minute to focus hard enough to figure out where this else if goes because of how many brackets there are
+	  else if (invCount == items->size() - 1) {
+	    cout << "Uh oh! Invalid item name entered. Please try again." << endl;
+	  }
+	  invCount++;
+	}
+      }
+      else {
+	cout << "Uh oh! You can't drop an item into a room that already has an item in it." << endl;
+      }
+    }
   }
 }
+// This is a massive program.
