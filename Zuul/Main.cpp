@@ -1,5 +1,6 @@
 // This project is for the Zuul game, but in the horrendously blasphemous language of C++ programming
 // Author: Shudhant Gautam
+// Credits: Faizan Karim and Mahmoud Abdelmoneum
 // Date: 19 December 2021
 
 #include <iostream>
@@ -143,7 +144,7 @@ int main() {
     // Losing
     for (int i = 0; i < inventory.size(); i++) {
 
-      // I got inspiration from Faizan for this part of my Zuul game
+      // I got inspiration from Faizan for this part of my Zuul game (as well as a lot of other parts)
       if (inventory[i] == 4 || inventory[i] == 5) {
 	cout << "lol you just lost" << endl;
 	return 0;
@@ -250,7 +251,7 @@ void createRoom(vector<Room*>* rooms) {
   exitMap.insert(pair<int, char*> (6, east));
   security -> setExits(exitMap);
 
-  // Bazooka
+  // Grenade
   security -> setItem(4);
   rooms -> push_back(security);
   exitMap.clear();
@@ -375,11 +376,11 @@ void createRoom(vector<Room*>* rooms) {
 // createItem function
 void createItem(vector<Item*>* items) {
 
-  // Bazooka
-  Item* bazooka = new Item();
-  bazooka -> setName((char*)("bazooka"));
-  bazooka -> setId(4);
-  items -> push_back(bazooka);
+  // Grenade
+  Item* grenade = new Item();
+  grenade -> setName((char*)("grenade"));
+  grenade -> setId(4);
+  items -> push_back(grenade);
 
   // Hand Sanitizer (necessary to win)
   Item* purell = new Item();
