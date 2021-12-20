@@ -311,7 +311,158 @@ void createRoom(vector<Room*>* rooms) {
   exitMap.insert(pair<int, char*> (8, east));
   admin -> setExits(exitMap);
 
-  // Hospital Emergency Kit (necessary for survival)
+  // Hospital Emergency Kit (necessary for winning)
   admin -> setItem(1);
   rooms -> push_back(admin);
+  exitMap.clear();
+
+  // Hospital Environmental Services (EVS) Room
+  Room* EVS = new Room();
+  EVS -> setDescription((char*)("in the hospital's Environmental Services room. If you wanna clean something, you're in the right place!"));
+  EVS -> setId(10);
+  exitMap.insert(pair<int, char*> (8, west));
+  exitMap.insert(pair<int, char*> (14, north));
+  exitMap.insert(pair<int, char*> (12, east));
+  EVS -> setExits(exitMap);
+
+  // Lysol (necessary for winning)
+  EVS -> setItem(2);
+  rooms -> push_back(EVS);
+  exitMap.clear();
+
+  // Area 51
+  Room * A51 = new Room();
+  A51 -> setDescription((char*)("in Area 51. You're in the wrong place, buddy."));
+  A51 -> setId(14);
+  exitMap.insert(pairr<int, char*> (10, south));
+  A51 -> setExits(exitMap);
+  A51 -> setItem(0);
+  rooms -> push_back(A51);
+  exitMap.clear();
+
+  // Break room
+  Room* brkRoom = new Room();
+  brkRoom -> setDescription((char*)("in the hospital staff break room. Nothing fancy."));
+  brkRoom -> setId(12);
+  exitMap.insert(pair<int, char*> (10, west));
+  brkRoom -> setExits(exitMap);
+  brkRoom -> setItem(0);
+  rooms -> push_back(brkRoom);
+  exitMap.clear();
+
+  // Parking lot
+  Room* parking = new Room();
+  parking -> setDescription((char*)("in the parking lot. Lots of cars, but all are locked."));
+  parking -> setId(11);
+  exitMap.insert(pair<int, char*> (8, north));
+  exitMap.insert(pair<int, char*> (15, east));
+  parking -> setExits(exitMap);
+  parking -> setItem(0);
+  rooms -> push_back(parking);
+  exitMap.clear();
+
+  // Cafeteria
+  Room* cafe = new Room();
+  cafe -> setDescription((char*)("in the good 'ol cafeteria. I love food!"));
+  cafe -> setId(15);
+  exitMap.insert(pair<int, char*> (11, west));
+  cafe -> setExits(exitMap);
+  cafe -> setItem(0);
+  rooms -> push_back(cafe);
+  exitMap.clear();
+}
+
+// createItem function
+void createItem(vector<Item*>* items) {
+
+  // Bazooka
+  Item* bazooka = new Item();
+  bazooka -> setname((char*)("rocket launcher"));
+  bazooka -> setId(4);
+  items -> push_back(bazooka);
+
+  // Hand Sanitizer (necessary to win)
+  Item* purell = new Item();
+  purell -> setName((char*)("hand sanitizer that actually kills 100% of germs for once"));
+  purell -> setId(5);
+  items -> push_back(purell);
+
+  // Emergency Kit (necessary to win)
+  Item* eKit = new Item();
+  eKit -> setName((char*)("emergency kit"));
+  eKit -> setId(1);
+  items -> push_back(eKit);
+
+  // Lysol (necessary to win)
+  Item* lysol = new Item();
+  lysol -> setName((char*)("Lysol wipes"));
+  lysol -> setId(2);
+  items -> push_back(lysol);
+
+  // Morphine shot
+  Item* drugs = new Item();
+  drugs -> setName((char*)("morphine shot"));
+  drugs -> setId(3);
+  items -> push_back(drugs);
+}
+
+// printRoom function
+void printRoom(vector<Room*>* rooms, vector<Item*>* items, int curRoom) {
+  vector<Room*>::iterator rIt;
+  vector<Item*>::iterator iIt;
+
+  for (rIt = rooms->begin(); rIt != rooms->end(); rIt++) {
+    if (curRoom == (*rIt)->getId()) {
+      cout << (*rIt)->getDescription() << endl;
+      cout << "Exits: ";
+
+      // Getting exits of curRoom
+      for (map<int, char*>::const_iterator cIt = (*rIt) -> getExits() -> begin(); cIt != (*rIt) ->getExits() -> end(); cIt++) {
+	// Took me some time to figure out how to print more than one exit lol
+	cout << cIt -> second << " ";
+      }
+      cout << endl;
+      // Dealing with items
+      cout << "Items in the room: ";
+      // Will be used if there's no items in the room
+      int count = 0;
+      for (i = items->begin(); i != items->end(); i++) {
+	if ((*rIt)->getItem() == (*iIt)->getId()) {
+	  // Print name of item
+	  cout << (*iIt)->getName();
+	  count++;
+	}
+      }
+      // If no items in room
+      if (count == 0) {
+	cout << "there are no items in the room! Keep looking." << endl;
+      }
+      else {
+	cout << endl;
+      }
+    }
+  }
+}
+
+// getInventory function
+void getInventory(vector<Item*>* items, vector<int> inventory) {
+  vector<Item*>::iterator it;
+  for (it = items0>begin(); it != items->end(); it++) {
+    // NOT an iterator, just an int
+    for (int i = 0; i < inventory.size(); i++) {
+      if (inventory[i] == (*i) -> getId()) {
+	cout << (*i) -> getName() << " ";
+      }
+    }
+  }
+  cout << endl;
+}
+
+// getItem function
+void getItem(vector<Room*>* rooms, vector<Item*>* items, vector<int>* inventory, int curRoom, char name[]) {
+  vector<Room*>::iterator rIt;
+  vector<item*>::iterator iIt;
+  for (rIt = rooms->begin(); rIt != rooms->end(); rIt++) {
+
+  }
 }
