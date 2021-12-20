@@ -217,5 +217,101 @@ void createRoom(vector<Room*>* rooms) {
   rooms -> push_back(LND);
   temp.clear();
 
-  R
+  // ICU Ward
+  Room* ICU = new Room();
+  ICU -> setDescription((char*)("in the ICU. Many come here, most don't leave."));
+  ICU -> setId(3);
+  exitMap.insert(pair<int, char*> (1, south));
+  exitMap.insert(pair<int, char*> (13, north));
+  ICU -> setExits(exitMap);
+  ICU -> setItem(0);
+  rooms -> push_back(ICU);
+  exitMap.clear();
+
+  // Emergency Department (ED)
+  Room* ED = new Room();
+  ED -> setDescription((char*)("in the Emergency Department (ED). You might find some useful drugs here..."));
+  ED -> setId(13);
+  exitMap.insert(pair<int, char*> (3, south));
+  ED -> setExits(exitMap);
+
+  // Morphine shot (necessary for winning)
+  ED -> setItem(3);
+  rooms -> push_back(ED);
+  exitMap.clear();
+
+  // Security Office
+  Room* security = new Room();
+  security -> setDescription((char*)("in the hospital's Security Office. You might find some... violent... things here. Not that they'd help you fight a virus. But hey, ask America."));
+  security -> setId(2);
+  exitMap.insert(pair<int, char*> (1, west));
+  exitMap.insert(pair<int, char*> (5, north));
+  exitMap.insert(pair<int, char*> (8, south));
+  exitMap.insert(pair<int, char*> (6, east));
+  security -> setExits(exitMap);
+
+  // Bazooka
+  security -> setItem(4);
+  rooms -> push_back(living);
+  exitMap.clear();
+
+  // Bathroom
+  Room* bathroom = new Room();
+  bathroom -> setDescription((char*)("in the bathroom. Maybe wash up a little?"));
+  bathroom -> setId(5);
+  exitMap.insert(pair<int, char*> (2, south));
+  bathroom -> setExits(exitMap);
+
+  // Hand sanitizer (necessary for winning)
+  bathroom -> setItem(5);
+  rooms -> push_back(bathroom);
+  exitMap.clear();
+
+  // Research Lab
+  Room* lab = new Room();
+  lab -> setDescription((char*)("in the research lab, where microbes are studied and cures are found."));
+  lab -> setId(6);
+  exitMap.insert(pair<int, char*> (2, west));
+  exitMap.insert(pair<int, char*> (7, north));
+  lab -> setExits(exitMap);
+
+  // Vaccine (necessary for winning)
+  lab -> setItem(10);
+  rooms -> push_back(lab);
+  exitMap.clear();
+
+  // Storage
+  Room* storage = new Room();
+  storage -> setDescription((char*)("in the hospital's storage area. Nothing of interest here. No really. There's literally nothing of interest here."));
+  storage -> setId(7);
+  exitMap.insert(pair<int, char*> (6, south));
+  storage -> setExits(exitMap);
+
+  // Nothing of interest
+  storage -> setItem(12);
+  rooms -> push_back(storage);
+  exitMap.clear();
+
+  // Secondary Hallway
+  Room* secondHall = new Room();
+  secondHall -> setDescription((char*)("in the secondary hallway. What new rooms will you find here?"));
+  secondHall -> setId(8);
+  exitMap.insert(pair<int, char*> (2, north));
+  exitMap.insert(pair<int, char*> (9, west));
+  exitMap.insert(pair<int, char*> (10, east));
+  exitMap.insert(pair<int, char*> (11, south));
+  secondHall -> setExits(exitMap);
+  rooms -> push_back(secondHall);
+  exitMap.clear();
+
+  // Administrative Office
+  Room* admin = new Room();
+  admin -> setDescription((char*)("in the hospital's Administrative Office. Lots of admin stuff goes on here. Nobody knows what that entails, but hey--it's admin stuff."));
+  admin -> setId(9);
+  exitMap.insert(pair<int, char*> (8, east));
+  admin -> setExits(exitMap);
+
+  // Hospital Emergency Kit (necessary for survival)
+  admin -> setItem(1);
+  rooms -> push_back(admin);
 }
