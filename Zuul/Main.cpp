@@ -51,7 +51,7 @@ int main() {
   // Only execute while program is in running state
   while (running) {
     cout << "You are in the " << endl;
-    printRoom(&roomList, *itemList, curRoom);
+    printRoom(&roomList, &itemList, curRoom);
     cin >> userInput;
     cin.clear();
     cin.ignore(10000, '\n');
@@ -81,7 +81,7 @@ int main() {
       // As long as the inventory is not empty
       if (inventory.size() != 0) {
 	cout << "Here's your inventory: " << endl;
-	printInventory(&itemList, inventory);
+	getInventory(&itemList, inventory);
       }
       
       // Otherwise, if it's empty...
@@ -99,7 +99,7 @@ int main() {
       cin.ignore(10000, '\n');
 
       // Calling getItem function
-      getItem(&roomList, &itemList, &iunventory, curRoom, userInput);
+      getItem(&roomList, &itemList, &inventory, curRoom, userInput);
     }
 
     // Dropping an item
@@ -111,10 +111,10 @@ int main() {
       cin.ignore(10000, '\n');
 
       // Calling dropItem function
-      dropItem(&roomList, *itemList, &inventory, curRoom, input);
+      dropItem(&roomList, &itemList, &inventory, curRoom, userInput);
     }
 
-    else if (strcmp(input, "help") == 0) {
+    else if (strcmp(userInput, "help") == 0) {
       cout << "The goal of the game is to go through the rooms and find a certain item that will help you win the game. Start by exploring!" << endl;
       cout << "Wondering how to play? You have 4 commands: move, get, drop, and inv." << endl;
       cout << "Good luck!" << endl;
@@ -161,7 +161,7 @@ int move(vector<Room*>* rooms, int curRoom, char direction[]) {
   for (it = rooms->begin(); it != rooms->end(); it++) {
     if (curRoom == (*it)->getId()) {
       map<int, char*> exits;
-      exits = *(*i) -> getExits();
+      exits = *(*it) -> getExits();
 
       // Exits
       map<int, char*>::const_iterator cit;
@@ -190,7 +190,7 @@ void createRoom(vector<Room*>* rooms) {
 
   // Rooms
   Room* rotunda = new Room();
-  rotunda -> setDescrioption((char*)("at the front entrance of the hospital."));
+  rotunda -> setDescription((char*)("at the front entrance of the hospital."));
   rotunda -> setId(1);
 
   // Possible exits from the rotunda
@@ -210,12 +210,12 @@ void createRoom(vector<Room*>* rooms) {
   // Labor and Delivery Ward
   Room* LND = new Room();
   LND -> setDescription((char*)("in the Labor and Delivery Room. Uh... what are you doing here?"));
-  LND -> set Id(4);
+  LND -> setId(4);
   exitMap.insert(pair<int, char*> (1, north));
   LND -> setExits(exitMap);
   LND ->setItem(0);
   rooms -> push_back(LND);
-  temp.clear();
+  exitMap.clear();
 
   // ICU Ward
   Room* ICU = new Room();
@@ -252,7 +252,7 @@ void createRoom(vector<Room*>* rooms) {
 
   // Bazooka
   security -> setItem(4);
-  rooms -> push_back(living);
+  rooms -> push_back(security);
   exitMap.clear();
 
   // Bathroom
