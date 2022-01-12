@@ -14,6 +14,7 @@ Student::Student() {
 
 }
 
+// Destructor
 Student::~Student() {
   delete &firstName;
   delete &lastName;
