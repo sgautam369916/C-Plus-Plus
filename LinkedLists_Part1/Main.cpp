@@ -71,4 +71,34 @@ int main() {
   cin.clear();
   cin.ignore(10000, '\n');
 
+  // printing first student
+  cout << " " << endl;
+  // print name
+  cout << "Student 1 is: " << sdnt->getFirst() << " " << sdnt->getLast() << ", ";
+  cout << "ID # is: " << *sdnt->getID() << ", GPA is: ";
+
+  // I got help on this part from Mahmoud A.
+  cout << fixed << setprecision(2) << *sdnt->getGPA() << endl;
+
+  // printing second student
+  cout << "Student 2 is: " << sdnt2->getFirst() << " " << sdnt2->getLast() << ", ";
+  cout << "ID # is: " << *sdnt2->getID() << ", GPA is: ";
+  cout << fixed << setprecision(2) << *sdnt2->getGPA() << endl << endl;
+
+  // Node stuff
+  Node* nodeA = new Node(sdnt);
+  Node* nodeB = new Node(sdnt2);
+  nodeA->setStudent(sdnt);
+  nodeA->setNext(nodeB);
+  nodeB->setStudent(sdnt2);
+
+  // Printing the nodes
+  cout << " " << endl;
+  cout << "The nodes are: " << endl;
+  cout << nodeA->getStudent()->getFirst() << " " << nodeA->getStudent()->getLast() << endl;
+  // I probably should put spaces before and after the arrows but I'm too lazy to change it everywhere
+  cout << nodeA->getNext()->getStudent()->getFirst() << " " << nodeA->getNext()->getStudent()->getLast() << endl;
+
+  // staple of C++ code
+  return 0;
 }
