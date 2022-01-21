@@ -28,8 +28,8 @@ int main() {
   while (true) {
     // Thought I'd defer from 30 char-long arrays for once
     char userInput[10];
-    int numIn;
-    float GPAIn;
+    int IDInput;
+    float GPAInput;
 
     cout << "Welcome! What would you like to do? ADD, DELETE, PRINT, AVERAGE, or QUIT?" << endl;
     cin.get(userInput, 10);
@@ -37,71 +37,62 @@ int main() {
     cin.ignore(10000, '\n');
 
     // If user inputs "ADD" (or "add" lol)
-    if (strcmp(input, "ADD") == 0 || strcmp(input, "add") == 0) {
+    if (strcmp(userInput, "ADD") == 0 || strcmp(userInput, "add") == 0) {
       Student* newStudent = new Student;
+
+      // First name
       cout << "Please enter the first name of the student: " << endl;
+      cin.get(newStudent->getFirst(), 10);
+      cin.clear();
+      cin.ignore(10000, '\n');
+
+      // Last name
+      cout << "Please enter the last name of the student: " << endl;
+      cin.get(newStudent->getLast(), 10);
+      cin.clear();
+      cin.ignore(10000, '\n');
+
+      // Student ID
+      cout << "Please enter the student's ID #: " << endl;
+      cin >> IDInput;
+      cin.clear();
+      cin.ignore(10000, '\n');
+
+      // GPA
+      cout << "Please enter the student's GPA: " << endl;
+      newStudent->setGPA(GPAInput);
+      cin.clear();
+      cin.ignore(10000, '\n');
+
+      // Kind of like committing changes to Git lol
+      addNew(first, newStudent);
+
+      cout << "Student has succesfully been entered." << endl;
+    }
+
+    // Delete
+    if (strcmp(userInput, "DELETE") == 0 || strcmp(userInput, "delete" == 0)) {
+
+    }
+
+    // Print
+    if (strcmp(userInput, "PRINT") == 0 || strcmp(userInput, "print" == 0)) {
+
+    }
+
+    // Average
+    if (strcmp(userInput, "AVERAGE") == 0 || strcmp(userInput, "average" == 0) || strcmp(userInput, "avg" == 0)) {
+
+    }
+
+    // Quit
+    if (strcmp(userInput, "QUIT") == 0 || strcmp(userInput, "quit" == 0)) {
+
     }
   }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Creating Operator overload for struct student
-ostream &operator<<(ostream &os, const student &val) {
-  os
-    << "Name: " << val.fName << " " << val.lName
-    << ", ID: " << val.id
-
-    // Had to specify this after lots of debugging and this whole idea of an ostream is where Jack helped
-    << ", GPA: " << setprecision(2) << fixed << val.gpa
-    << endl;
-
-  return os;
-}
-
-// Function add
-void add(vector<student*>*);
-
-// Defining function to add
-void add(vector<student*>* paramlist) {
-  student* s = new student();
-  s->fName = new char[25];
-  s->lName = new char[25];
-
-  // For first name
-  cout << "Enter the first name:" << endl;
-  // Accessing corresponding element in struct student
-  cin >> s->fName;
-
-  // For last name
-  cout << "Enter the last name:" << endl;
-  cin >> s->lName;
-
-  // For student ID number
-  cout << "Enter student's ID number:" << endl;
-  cin >> s->id;
-
-  // For GPA
-  cout << "Enter the GPA:" << endl;
-  cin >> s->gpa;
-
-  paramlist->push_back(s);
-}
 
 // Now deleting function to, obviously, delete students
 void del(vector<student*> *list) {
