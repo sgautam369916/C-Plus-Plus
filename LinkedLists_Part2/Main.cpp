@@ -100,97 +100,88 @@ int main() {
     }
 
     // Average
-    if (strcmp(userInput, "AVERAGE") == 0 || strcmp(userInput, "average" == 0) || strcmp(userInput, "avg" == 0)) {
+    else if (strcmp(userInput, "AVERAGE") == 0 || strcmp(userInput, "average" == 0) || strcmp(userInput, "avg" == 0)) {
       // If the first node is NULL, that means there's nothing in the linked list
       if (firstNode == NULL) {
 	cout << "ERROR: Please enter a student before trying to average. There are currently no students in the system." << endl;
- }
-
-
+      }
+      else {
+	cout << "The average GPA of all students entered is: " << average(firstNode) << endl;
+      }
     }
 
     // Quit
-    if (strcmp(userInput, "QUIT") == 0 || strcmp(userInput, "quit" == 0)) {
-
-    }
-  }
-}
-
-
-
-// Now deleting function to, obviously, delete students
-void del(vector<student*> *list) {
-  int ID;
-  cout << "Enter the ID of the student you want to delete:";
-
-  cin >> ID;
-  int position = 0;
-
-  // Pretty interesting to see how for loops work for vectors, but here we go! (thanks Jack lol)
-  for (vector<student*>::iterator j = list->begin(); j != list->end(); ++j) {
-    // If the user-specified value matches with one in the vector, then...
-    if((*j) -> id == ID) {
-
-      // ... then delete!
-      list->erase(list->begin() + position);
+    else if (strcmp(userInput, "QUIT") == 0 || strcmp(userInput, "quit" == 0)) {
       break;
     }
-
     else {
-      // and if not, then keep moving on.
-      position++;
+      cout << "ERROR: invalid input. Please try again." << endl;
     }
   }
-}
-// Now the function to print the info out...
-void print(vector<student*> *list) {
-
-  // Starting to get the hang of iterating through it...
-  for (vector<student*>::iterator i = list->begin(); i != list->end(); i++) {
-    cout << **i;
-  }
+  return 0;
 }
 
-// Finally, something I recognize: main()!
-int main() {
-  bool run = true;
-
-  // Setting up the vector
-  vector <student*>* list = new vector<student*>();
-
-  // To use strcmp on the user input for later down the road
-  char cmd[10];
-
-  // So user can quit at any time
-  while (run == true) {
-    cout << "\nWould you like to ADD, DELETE, PRINT, or QUIT" << endl;
-    cin >> cmd;
-
-    // If the user says "ADD", then...
-    if (strcmp(cmd,"ADD") == 0) {
-      add(list);
-      cout << "The student has been added." << endl;
-    }
-
-    // If the user says "DELETE", then...
-    else if (strcmp(cmd,"DELETE") == 0) {
-      del(list);
-      cout << "The student has been deleted.";
-    }
-
-    // If the user simply wants a list of all the students, then...
-    else if (strcmp(cmd,"PRINT") == 0) {
-      print(list);
-    }
-
-    // If the user hates your program and wants to quit, then...
-    else if (strcmp(cmd,"QUIT") == 0) {
-      exit(0);
-    }
-
-    else
-    {
-      cout << "Invalid input. Please try again. Remember, capitalizations matter!";
-    }
+// Adding new student function
+void addNew (Node* previousNode, Student* student) {
+  // If first node is NULL, it's blank, and the node can be used to construct the linked list now
+  if (firstNode == NULL) {
+    firstNode = new Node(student);
   }
+
+  // Otherwise, if the node is already filled with data, create a new node after it
+  else if (student->getID() < firstNode->getStudent()->getID()) {
+    Node* tempNode = new Node(firstNode->getStudent());
+    tempNode->setNext(firstNode->getNext());
+    firstNode->setStudent(student);
+    // Now the next node is the tempNode
+    firstNode->setNext(tempNode);
+  }
+
+  // Otherwise, if the next node is NULL (end of linked list)
+  else if (previousNode->getNext() == NULL) {
+    Node* newNode = new Node(student);
+    // Add a node to the end of the list
+    previousNode->setNext(newNode);
+  }
+
+  // If the current student's ID number is less than that of the next student's ID number in the linked list...
+  else if (student->getID() < previousNode->getNext()->getStudent()->getID()) {
+    Node* newNode = new Node(student);
+    newNode->setNext(previousNode->getNext());
+    // Now the next node is a new node
+    previousNode->setNext(newNode);
+  }
+
+  // Otherwise, add a new node
+  else {
+    addNew(previousNode->getNext(), student);
+  }
+}
+
+// Printing current list function
+void print(Node* nextNode) {
+  // As long as the next node is not blank/as long as you've not reached the end of the linked list
+  if (nextNode != NULL) {
+    // Print out the last name of the student
+    cout << nextNode->getStudent()->getLast() << ", ";
+    cout << nextNode->getStudent()->getFirst() << endl;
+    cout << nextNode->getStudent()->getID() << endl;
+    cout << nextNode->getStudent()->getGPA();
+    // cout separator
+    cout << "===============" << endl;
+
+    // RECURSION!! So once the program gets to this line, it'll go back up to line #162 and run this function over and over again, until the if statement in line #164 is no longer true (end of linked list)
+    print(nextNode->getNext());
+  }
+}
+
+// Delete student function
+void removeStudent(Node* nextNode, Node* previousNode, char studentName[]) {
+  // For user's "yes" or "no" input
+  char binaryUserInput;
+  // If the next node is equal to the first node and the student's first names match up with the user's input
+  if (nextNode == firstNode && strcmp(nextNode->getStudent()->getFirst(), studentName) == 0) {
+    
+  }
+  
 }
