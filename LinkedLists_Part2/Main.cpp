@@ -65,23 +65,47 @@ int main() {
       cin.ignore(10000, '\n');
 
       // Kind of like committing changes to Git lol
-      addNew(first, newStudent);
+      addNew(firstNode, newStudent);
 
       cout << "Student has succesfully been entered." << endl;
     }
 
     // Delete
-    if (strcmp(userInput, "DELETE") == 0 || strcmp(userInput, "delete" == 0)) {
+    else if (strcmp(userInput, "DELETE") == 0 || strcmp(userInput, "delete" == 0)) {
+      // If the first node is NULL, that means there's nothing in the linked list
+      if (firstNode == NULL) {
+	cout << "ERROR: Please enter a student before trying to delete. There are currently no students in the system." << endl;
+      }
+      else {
+	cout << "Please enter the first name of the student you'd like to delete: " << endl;
+	cin.get(userInput, 10);
+	cin.clear();
+	cin.ignore(10000, '\n');
 
+	// Practical Final prep lol
+	remove(firstNode, NULL, userInput);
+      }
     }
 
     // Print
-    if (strcmp(userInput, "PRINT") == 0 || strcmp(userInput, "print" == 0)) {
-
+    else if (strcmp(userInput, "PRINT") == 0 || strcmp(userInput, "print" == 0)) {
+      // If the first node is NULL, that means there's nothing in the linked list
+      if (firstNode == NULL) {
+	cout << "ERROR: Please enter a student before trying to print. There are currently no students in the system." << endl;
+      }
+      else {
+	cout << endl;
+	print(firstNode);
+      }
     }
 
     // Average
     if (strcmp(userInput, "AVERAGE") == 0 || strcmp(userInput, "average" == 0) || strcmp(userInput, "avg" == 0)) {
+      // If the first node is NULL, that means there's nothing in the linked list
+      if (firstNode == NULL) {
+	cout << "ERROR: Please enter a student before trying to average. There are currently no students in the system." << endl;
+ }
+
 
     }
 
