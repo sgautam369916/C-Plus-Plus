@@ -1,5 +1,5 @@
 // Node.cpp C++ file from my partner, Stefan Smith, for the Linked Lists Part 2 project
-// Author: Stefan Smith (and Shudhant Gautam)
+// Author: Stefan Smith
 // Date: 30 January 2022
 
 #include "Node.h"
@@ -12,7 +12,7 @@ Node::Node(Student* newStudent) {
 }
 
 Node::~Node() {
-  //cout << "Node deleted" << endl;
+  cout << "Node deleted" << endl;
 }
 
 Student* Node::getStudent() {
@@ -21,7 +21,7 @@ Student* Node::getStudent() {
 
 // I had to add in this "setStudent" because Stefan's original code didn't have it
 void Node::setStudent(Student* newStudent) {
-  newStudent = student;
+  student = newStudent;
 }
 
 Node* Node::getNext() {

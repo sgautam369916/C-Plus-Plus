@@ -55,11 +55,13 @@ int main() {
       // Student ID
       cout << "Please enter the student's ID #: " << endl;
       cin >> IDInput;
+      newStudent->setID(IDInput);
       cin.clear();
       cin.ignore(1000000, '\n');
 
       // GPA
       cout << "Please enter the student's GPA: " << endl;
+      cin >> GPAInput;
       newStudent->setGPA(GPAInput);
       cin.clear();
       cin.ignore(1000000, '\n');
@@ -176,7 +178,7 @@ void print(Node* nextNode) {
     cout << nextNode->getStudent()->getLast() << ", ";
     cout << nextNode->getStudent()->getFirst() << endl;
     cout << nextNode->getStudent()->getID() << endl;
-    cout << nextNode->getStudent()->getGPA();
+    cout << nextNode->getStudent()->getGPA() << endl;;
     // cout separator
     cout << "===============" << endl;
 
@@ -254,7 +256,7 @@ void remove(Node* nextNode, Node* previousNode, char studentName[]) {
 
     // If user said yes
     if (binaryUserInput == 'y' || binaryUserInput == 'Y') {
-      cout << "The selected tudent has succesfully been deleted." << endl;
+      cout << "The selected student has succesfully been deleted." << endl;
       // Doubly-linked lists: going backwards in the list
       previousNode->setNext(nextNode->getNext());
       // Now we can safely destroy the next node

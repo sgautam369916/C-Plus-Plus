@@ -16,10 +16,8 @@ Student::Student() {
 // Empty Student destructor
 Student::~Student() {
   // Got help for this part from Mahmoud A and Faizan K
-  delete &firstName;
-  delete &lastName;
-  delete &ID;
-  delete &GPA;
+  //delete firstName;
+  //delete lastName;
 }
 
 // getFirst function

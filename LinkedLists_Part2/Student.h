@@ -16,7 +16,6 @@ class Student {
   Student();
   // Student destructor
   ~Student();
-
   // getFirst
   char* getFirst();
   // getLast
