@@ -1,11 +1,13 @@
 // Node.h header file from my partner, Stefan Smith, for the Linked Lists Part 2 project
-// Author: Shudhant Gautam
+// Author: Stefan Smith
 // Date: 30 January 2022
 
-#ifndef NODE_H
-#define NODE_H
+#ifndef node_h
+#define node_h
+
 #include "Student.h"
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -16,6 +18,9 @@ class Node {
   Student* getStudent();
   Node* getNext();
   void setNext(Node* newNext);
+
+  // I added this line of code to work with my program
+  void setStudent(Student* newStudent);
  private:
   Node* nextNode;
   Student* student;
