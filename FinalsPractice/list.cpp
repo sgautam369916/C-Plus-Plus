@@ -37,6 +37,8 @@ void build(node*& head) {
     previous = current;
   }
 
+  
+  
   // end of list
   current->next = NULL;
 }
