@@ -4,7 +4,6 @@
 
 #ifndef node_h
 #define node_h
-
 #include "Student.h"
 #include <iostream>
 #include <cstring>
@@ -18,8 +17,6 @@ class Node {
   Student* getStudent();
   Node* getNext();
   void setNext(Node* newNext);
-
-  // I added this line of code to work with my program
   void setStudent(Student* newStudent);
  private:
   Node* nextNode;
