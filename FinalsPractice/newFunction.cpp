@@ -6,8 +6,11 @@
 
 #include <iostream>
 
-void remove_head(node* head) {
-  node *tempNode = head;
-  head = head->next;
-  delete tempNode;
+void remove_head(*head) {
+
+  if (head != NULL) {
+    node *tempNode = head;
+    head = head->next;
+    delete tempNode;
+  }
 }

@@ -4,14 +4,15 @@
 #include <cstdlib>
 using namespace std;
 
-struct node
-{
+struct node {
     int data;
-    node * next;
+    node* next;
 };
 
 /* *****************YOUR TURN! ******************************** */
 /* PLACE YOUR PROTOTYPE HERE */
+
+void remove_head(node* head);
 
 /* These functions are already written and can be called to test out your code */
 void build(node * & head);      //supplied

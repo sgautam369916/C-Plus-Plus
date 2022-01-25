@@ -1,5 +1,4 @@
 #include "list.h"
-#include "newFunction.h"
 
 using namespace std;
 
@@ -13,8 +12,8 @@ int main() {
 
   // caling display_all function to print out the list
   display_all(head);
+  
   //PLEASE PUT YOUR CODE HERE to call the function assigned
-
   remove_head(head);
   
   // printing the list out again

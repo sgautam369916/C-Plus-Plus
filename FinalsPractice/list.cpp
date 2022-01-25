@@ -1,6 +1,6 @@
 #include "list.h"
 
-void build(node * & head) {
+void build(node*& head) {
 
   // generates random numbers by seeding rand with a starting value
   srand((unsigned)time(0));
@@ -42,7 +42,7 @@ void build(node * & head) {
 }
 
 // print function
-void display_all(node * head) {
+void display_all(node* head) {
 
   // while the list isn't empty
   while (head != NULL) {
