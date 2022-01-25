@@ -19,7 +19,6 @@ Student* Node::getStudent() {
   return student;
 }
 
-// I had to add in this "setStudent" because Stefan's original code didn't have it
 void Node::setStudent(Student* newStudent) {
   student = newStudent;
 }
