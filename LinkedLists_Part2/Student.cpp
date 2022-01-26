@@ -15,9 +15,7 @@ Student::Student() {
 
 // Empty Student destructor
 Student::~Student() {
-  // Got help for this part from Mahmoud A and Faizan K
-  //delete firstName;
-  //delete lastName;
+  
 }
 
 // getFirst function
@@ -36,8 +34,8 @@ int Student::getID() {
 }
 
 // setID function
-void Student::setID(int IDin) {
-  ID = IDin;
+void Student::setID(int IDInput) {
+  ID = IDInput;
 }
 
 // getGPA function

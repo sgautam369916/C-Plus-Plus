@@ -17,13 +17,15 @@ using namespace std;
 void addNew(Node* previousNode, Student* student);
 void print(Node* nextNode);
 float average(Node* nextNode);
-void remove(Node* nextNode, Node* previousNode, char studentName[]);
+void remove(Node* nextNode, Node* previousNode, int IDin);
 
 Node* firstNode = NULL;
 
 int main() {
   std::cout << std::fixed;
   std::cout << std::setprecision(2);
+
+  int IDin;
 
   while (true) {
     // Thought I'd defer from 30 char-long arrays for once
@@ -79,12 +81,12 @@ int main() {
 	cout << "ERROR: Please enter a student before trying to delete. There are currently no students in the system." << endl;
       }
       else {
-	cout << "Please enter the first name of the student you'd like to delete: " << endl;
-	cin.get(userInput, 10);
+	cout << "Please enter the ID number of the student you'd like to delete: " << endl;
+	cin >> IDInput;
 	cin.clear();
 	cin.ignore(1000000, '\n');
 	
-	remove(firstNode, NULL, userInput);
+	remove(firstNode, NULL, IDInput);
       }
     }
 
@@ -188,11 +190,11 @@ void print(Node* nextNode) {
 }
 
 // Delete student function
-void remove(Node* nextNode, Node* previousNode, char studentName[]) {
+void remove(Node* nextNode, Node* previousNode, int IDInput) {
   // For user's "yes" or "no" input
   char binaryUserInput;
-  // If the next node is equal to the first node and the student's first names match up with the user's input
-  if (nextNode == firstNode && strcmp(nextNode->getStudent()->getFirst(), studentName) == 0) {
+  // If the next node is equal to the first node and the student's ID matches with user's input
+  if (nextNode == firstNode && nextNode->getStudent()->getID() == IDInput) {
     cout << nextNode->getStudent()->getLast() << ", ";
     cout << nextNode->getStudent()->getFirst() << endl;
     cout << nextNode->getStudent()->getID() << endl;
@@ -212,7 +214,7 @@ void remove(Node* nextNode, Node* previousNode, char studentName[]) {
       // Destructor to remove node
       // If the next node is NULL, or if we are at the end of the list, then
       if (nextNode->getNext() == NULL) {
-	// next node is destroyed
+	// next node is destroydesh
 	nextNode->~Node();
 	// first node is set to NULL
 	firstNode = NULL;
@@ -224,7 +226,7 @@ void remove(Node* nextNode, Node* previousNode, char studentName[]) {
 	// Now we can safely destroy the nextNode
 	nextNode->~Node();
 	// calling remove() to remove the student from the list
-	remove(firstNode, NULL, studentName);
+	remove(firstNode, NULL, IDInput);
       }
     }
     // Otherwise if the user said no
@@ -233,7 +235,7 @@ void remove(Node* nextNode, Node* previousNode, char studentName[]) {
       // If the next node is not NULL (meaning we're not at the end of the list yet)
       if (nextNode->getNext() != NULL) {
 	// Then remove the next node and student
-	remove(nextNode->getNext(), nextNode, studentName);
+	remove(nextNode->getNext(), nextNode, IDInput);
       }
     }
     // Invalid input
@@ -241,8 +243,8 @@ void remove(Node* nextNode, Node* previousNode, char studentName[]) {
       cout << "ERROR: Invalid input. Please try again." << endl;
     }
   }
-  //
-  else if (strcmp(nextNode->getStudent()->getFirst(), studentName) == 0) {
+  
+  else if (nextNode->getStudent()->getID() == IDInput) {
     cout << nextNode->getStudent()->getLast() << ", ";
     cout << nextNode->getStudent()->getFirst() << endl;
     cout << nextNode->getStudent()->getID() << endl;
@@ -271,10 +273,16 @@ void remove(Node* nextNode, Node* previousNode, char studentName[]) {
       cout << "ERROR: Invalid input. Please try again." << endl;
     }
   }
+
+  // If the user inputted the wrong ID #
+  else if (nextNode->getStudent()->getID() != IDInput) {
+    cout << "ERROR: Invalid student ID # entered. Please try again." << endl;
+  }
+  
   // If the next node is not NULL (meaning we're not at the end of the list yet)
   if (nextNode->getNext() != NULL) {
     // Then remove the next node and the student
-    remove(nextNode->getNext(), nextNode, studentName);
+    remove(nextNode->getNext(), nextNode, IDInput);
   }
 }
 
