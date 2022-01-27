@@ -13,9 +13,10 @@ int main()
     // remove_head(head);
 
     // remove all 5's
-
+    remove_5(head);
+    
     // remove tail
-    remove_tail(head);
+    // remove_tail(head);
     
     display_all(head);
     
