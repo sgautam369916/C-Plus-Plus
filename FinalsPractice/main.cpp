@@ -4,14 +4,26 @@
 
 using namespace std;
 
-void addNode(node* head) {
+void addNode(node*& head) {
   node* current = new node();
 
-  while (head->next != NULL) {
-    head->next = current;
-  }
   current->data = (69);
-  head = current;
+
+  current->next = NULL;
+
+  if (head == NULL) {
+    head = current;
+  }
+
+  else {
+    node* temp = head;
+
+    while (temp->next != NULL) {
+      temp = temp->next;
+    }
+
+    temp->next = current;
+  }
 }
 
 int main() {

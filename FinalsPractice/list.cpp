@@ -35,10 +35,7 @@ void build(node*& head) {
 
     // set previous node to current node
     previous = current;
-  }
-
-  
-  
+  }  
   // end of list
   current->next = NULL;
 }
