@@ -9,7 +9,14 @@ int main()
 
     //PLEASE PUT YOUR CODE HERE to call the function assigned
 
+    // remove head
+    // remove_head(head);
 
+    // remove all 5's
+
+    // remove tail
+    remove_tail(head);
+    
     display_all(head);
     
     return 0;
