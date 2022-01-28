@@ -6,27 +6,27 @@ using namespace std;
 
 void move_to_beginning(node*& head) {
   node* temp = head;
-  node* prev = NULL;
   node* last = head;
   node* temp2 = NULL;
-  
-  if (temp == NULL) {
+
+  // If list is empty or only one node long, return
+  if (temp == NULL || temp->next = NULL) {
     return;
   }
 
-  if (temp->next == NULL) {
-    temp = temp->next;
-    delete temp;
-    return;
-  }
-
+  // As long as we're not at null
   while (last->next != NULL) {
+    // temp is updated with values of list
     temp2 = last;
+    // iterate forward
     last = last->next;
   }
-  // End of list
+  // End of list once we've reached right before it (temp2->next, not temp2)
   temp2->next = NULL;
 
+  // now the original head (last), has it's next set to the new head
   last->next = head;
+
+  // and new head becomes the last number we removed
   head = last;
 }
